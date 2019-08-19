@@ -40,4 +40,20 @@ public class AppConfig {
 		return Arrays.asList(linea1, linea2, linea3);
 	}
 	
+	@Bean("itemsFacturaOficina")
+	@Primary
+	public List<ItemFactura> registrarItemsOficina(){
+		Producto pro1 = new Producto("Macbook Pro", 10000);
+		Producto pro2 = new Producto("Asus Rog Phone", 900);
+		Producto pro3 = new Producto("Camara Nikon", 150);
+		Producto pro4 = new Producto("Iphone X", 1950);
+		
+		ItemFactura linea1 = new ItemFactura(pro1, 2);
+		ItemFactura linea2 = new ItemFactura(pro2, 1);
+		ItemFactura linea3 = new ItemFactura(pro3, 1);
+		ItemFactura linea4 = new ItemFactura(pro4, 1);
+		
+		return Arrays.asList(linea1, linea2, linea3, linea4);
+	}
+	
 }
