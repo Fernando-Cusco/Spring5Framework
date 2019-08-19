@@ -2,6 +2,8 @@ package com.sistemas.springboot.di.app.models.domain;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,8 +18,16 @@ public class Factura {
 	private Cliente cliente;
 	
 	@Autowired
-	
 	private List<ItemFactura> items;
+	
+	//Spring llama a los métodos anotados con @PostConstruct solo una vez, 
+	//justo después de la inicialización de las propiedades del bean .
+	@PostConstruct
+	public void init() {
+		cliente.setNombre(cliente.getNombre()+" concateno eso!!! gracias a @PostContruct");
+		descripcion = descripcion.concat(" del Cliente ").concat(cliente.getApellidos());
+	}
+	
 
 	public String getDescripcion() {
 		return descripcion;
