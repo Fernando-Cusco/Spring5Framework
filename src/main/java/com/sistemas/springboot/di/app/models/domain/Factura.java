@@ -3,6 +3,7 @@ package com.sistemas.springboot.di.app.models.domain;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,8 +25,14 @@ public class Factura {
 	//justo después de la inicialización de las propiedades del bean .
 	@PostConstruct
 	public void init() {
-		cliente.setNombre(cliente.getNombre()+" concateno eso!!! gracias a @PostContruct");
+		cliente.setNombre(cliente.getNombre()+" concateno eso!!! gracias a @PostConstruct");
 		descripcion = descripcion.concat(" del Cliente ").concat(cliente.getApellidos());
+	}
+	
+	
+	@PreDestroy
+	public void destroy() {
+		System.out.println("Factura desctruida".concat(descripcion));
 	}
 	
 
